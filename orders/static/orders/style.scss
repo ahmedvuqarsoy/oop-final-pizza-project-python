@@ -1,0 +1,253 @@
+/* ---------------------------------------------------
+    TYPE IN THIS COMMAND TO SETUP:
+        sass orders/static/orders/style.scss orders/static/orders/style.css
+----------------------------------------------------- */
+
+/* ---------------------------------------------------
+    SASS VARIABLES
+----------------------------------------------------- */
+
+$color01: #fafafa;              /* General Background */
+$color02: #333333;              /* General Text */
+$color03: #2690d6;              /* Navbar Background */
+$color04: #f8fa75;              /* Navbar Text */
+$color05: #ffffc4;              /* Menu Background */
+$color06: #79c9ff;              /* Menu Sub Header */
+$color07: #ff9a9a;              /* Menu Header */
+
+@import "https://fonts.googleapis.com/css?family=Raleway&display=swap";
+
+
+/* Inheritance */
+%font-family01 {
+    font-family: 'Raleway', sans-serif;
+}
+
+  
+/* ---------------------------------------------------
+    GENERAL STYLE
+----------------------------------------------------- */
+
+body {
+    @extend %font-family01;
+    background: $color01;
+    color: $color02;
+    margin-top: 5rem;
+}
+
+.navbar {
+    min-height: 60px;
+    padding: 0px 100px;
+    background: $color03;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 20px;
+}
+
+.site-header .navbar-nav .nav-link {
+    color: $color04;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: black;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+.content-section {
+    background: white;
+    padding: 20px 20px;
+    border: 1px solid darkgray;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+.menu {
+    margin-top: 50px;
+}
+
+.table-menu {
+    background: $color05;
+    font-size: 14px;
+}
+
+.table th {
+    text-align: left;
+    font-size: 16px;
+    color: black;
+    background: $color06;
+}
+
+#menu-title {
+    text-align: center;
+    font-size: 20px;
+    background: $color07;
+    color: black;
+}
+
+#toppings-title {
+    text-align: center;
+    font-size: 20px;
+    background: $color07;
+    color: black;
+}
+
+#price {
+    display: none;
+}
+
+#price-value {
+    display: inline-block;
+}
+
+.footer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 30px;
+    font-size: 0.8em;
+}
+
+
+/* ---------------------------------------------------
+    STRIPE STYLE
+----------------------------------------------------- */
+
+.stripe-label {
+    color: gray;
+    font-size: 16px;
+    font-variant: normal;
+    padding: 2px;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+.stripe-button {
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+    color: #fff;
+    background: #32325d;
+    white-space: nowrap;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    margin-left: 12px;
+    margin-top: 28px;
+}
+
+
+.stripe-form {
+    background: #d9d4e4;
+    padding: 20px 20px;
+    padding-bottom: 50px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+}
+
+#card-errors {
+    height: 20px;
+    padding: 4px 0;
+    color: #fa755a;
+}
+
+.stripe-form-row {
+    width: 70%;
+    float: left;
+}
+
+.token {
+    color: #32325d;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+}
+
+.wrapper {
+    width: 670px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+#stripe-token-handler {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    padding: 20px 30px;
+    border-radius: 0 0 4px 4px;
+    box-sizing: border-box;
+    box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1),
+                0 15px 35px rgba(50, 50, 93, 0.15),
+                0 5px 15px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+    transform: translateY(0);
+    opacity: 1;
+    background-color: white;
+}
+
+#stripe-token-handler.is-hidden {
+    opacity: 0;
+    transform: translateY(-80px);
+}
+
+#checkoutMethods {
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    max-height: 700px;
+    margin: 1rem;
+    position: relative;
+    width: 700px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+/**
+* The CSS shown here will not be introduced in the Quickstart guide, but shows
+* how you can use CSS to style your Element's container.
+*/
+.StripeElement {
+    background-color: white;
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'orders/style.css' %}">
+
+        {% if title %}
+            <title>Pizza - {{ title }}</title>
+        {% else %}
+            <title>Project 3 - Pizza</title>
+        {% endif %}
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-light fixed-top">
+                <div class="container">
+                    <a class="navbar-brand mr-4" href="{% url 'orders-home' %}">CS50 Web Programming: Project 3 - Pizza</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" 
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                            <a class="nav-item nav-link" href="{% url 'orders-home' %}">Home</a>
+                            {% if user.is_authenticated %}
+                                <a class="nav-item nav-link" href="{% url 'orders-create' %}">Create Order</a>
+                                <a class="nav-item nav-link" href="{% url 'shopping_cart:order_summary' %}">Shopping Cart</a>
+                                <a class="nav-item nav-link" href="{% url 'orders-history' %}">Order History</a>
+                            {% endif %}
+                        </div>
+                        <!-- Navbar Right Side -->
+                        <div class="navbar-nav">
+                            {% if user.is_authenticated %}
+                                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% block content %}{% endblock %}
+                </div>
+                <div class="col-md-4">
+                    {% block sidebar %}{% endblock %}
+                </div>
+            </div>
+        </main>
+        <div class="footer">
+            <div class="line"></div>
+            <p>For &#169; OOP Final Project - Hajiahmad Ahmadzada</p>
+        </div>
+        <!--  JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" 
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a5428e3a4b.js"></script>
+        <script src="{% static 'orders/base.js' %}"></script>
+        {% block script %}{% endblock script %}
+    </body>
+</html>

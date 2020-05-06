@@ -1,0 +1,23 @@
+{% extends 'orders/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" id="orderForm" data-meal_type-url="{% url 'ajax_load_meal_type' %}" data-size-url="{% url 'ajax_load_size' %}" 
+         data-meal_addition-url="{% url 'ajax_load_meal_addition' %}" novalidate>
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Create Order</legend>
+                <span id="meal">{{ form.meal|as_crispy_field }}</span>
+                <span id="meal-type">{{ form.meal_type|as_crispy_field }}</span>
+                <span id="size">{{ form.size|as_crispy_field }}</span>
+                <span id="meal-additions">{{ form.meal_addition|as_crispy_field }}</span>
+            </fieldset>
+            <div class="form-group">
+                <button id="add-to-cart" class="btn btn-outline-secondary" type="submit" disabled>Add To Cart</button>
+            </div>
+        </form>
+        <div id="price" data-price-url="{% url 'ajax_load_price' %}" >
+            <p>Total Price: $<span id="price-value"></span></p>
+        </div>
+    </div>
+{% endblock %}
